@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 })
 function save(e){
     e.preventDefault();
-    document.cookie=`fontcolor=${fontcolor.value};`
-    document.cookie=`fontsize=${fontsize.value};`
+    const expires = new Date();
+            expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days
+            const expiresStr = `expires=${expires.toUTCString()}`;
+            document.cookie = `fontcolor=${fontcolor.value}; ${expiresStr}; path=/`;
+            document.cookie = `fontsize=${fontsize.value}; ${expiresStr}; path=/`;
 
 }
